@@ -1,3 +1,8 @@
+## INTEGRANTES##
+-Héctor Ulises Cacho Gonzalez
+-Fátima Avelino Celis
+-María Fernanda Fuentes Abascal 
+
 # AI Support Engine
 
 Clasificador de solicitudes de soporte con **dos motores** que comparten el mismo contrato de respuesta:
