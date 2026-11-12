@@ -1,0 +1,12 @@
+{
+  "name": "ai-support-engine",
+  "version": "1.0.0",
+  "description": "Clasificación de solicitudes de soporte: motor tradicional (reglas) vs. IA generativa",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test",
+    "eval": "node eval/run.js"
+  }
+}
