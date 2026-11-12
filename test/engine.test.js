@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { classifyTraditional } from '../src/traditional.js';
 import { analyze } from '../src/analyze.js';
 import { validateAnalyzeRequest, checkResponseContract } from '../src/contract.js';
-import { detectInjection, redactSecrets } from '../src/policy.js';
+import { detectInjection, redactSecrets, detectSecuritySignal, finalize } from '../src/policy.js';
 import { parseModelJson, validateModelOutput, classifyGenerative } from '../src/generative.js';
 
 test('traditional: clasifica las 4 categorías', () => {
@@ -71,4 +71,56 @@ test('generativo: el proveedor no recibe secretos del usuario', async () => {
   const complete = async (input) => { seen = input; return '{"category":"ACCESS","priority":"MEDIUM","response":"Hola"}'; };
   await classifyGenerative('mi contraseña es Hunter2! no entro', { complete });
   assert.ok(!seen.includes('Hunter2'));
+});
+
+// ---------------------------------------------------------------------------
+// Pruebas nuevas (Fernanda): clasificación tradicional y revisión humana por código
+// ---------------------------------------------------------------------------
+
+test('traditional: cuentas ajenas sin contraseña es SECURITY aunque mencione acceso', () => {
+  assert.equal(classifyTraditional('Alguien está entrando a cuentas ajenas sin contraseña').category, 'SECURITY');
+  assert.equal(classifyTraditional('Puedo entrar a la cuenta de otro usuario sin contraseña').category, 'SECURITY');
+  assert.equal(classifyTraditional('Cualquiera puede ver datos de otros usuarios sin iniciar sesión').category, 'SECURITY');
+});
+
+test('traditional: datos ajenos y secretos expuestos sin palabras clave obvias', () => {
+  assert.equal(classifyTraditional('Pude ver los datos de otro cliente cambiando el ID en la URL').category, 'SECURITY');
+  assert.equal(classifyTraditional('Mi token apareció en los logs públicos').category, 'SECURITY');
+  assert.equal(classifyTraditional('Veo el panel de administrador sin ser admin').category, 'SECURITY');
+});
+
+test('traditional: formas verbales de filtración', () => {
+  const r = classifyTraditional('Se filtró la base de datos de clientes');
+  assert.equal(r.category, 'SECURITY');
+  assert.equal(r.priority, 'CRITICAL');
+});
+
+test('traditional: problemas de acceso legítimos siguen siendo ACCESS', () => {
+  assert.equal(classifyTraditional('Olvidé mi contraseña').category, 'ACCESS');
+  assert.equal(classifyTraditional('No puedo iniciar sesión').category, 'ACCESS');
+});
+
+test('traditional: robo de un dispositivo no es CRITICAL', () => {
+  assert.notEqual(classifyTraditional('Me robaron el celular y no puedo recibir el código').priority, 'CRITICAL');
+});
+
+test('traditional: FEATURE con "agregue"', () => {
+  assert.equal(classifyTraditional('Que agregue un botón para exportar').category, 'FEATURE');
+});
+
+test('policy: detectSecuritySignal no depende de la categoría', () => {
+  assert.equal(detectSecuritySignal('Puedo ver los datos de otros clientes'), true);
+  assert.equal(detectSecuritySignal('Quisiera un modo oscuro'), false);
+  assert.equal(detectSecuritySignal(undefined), false);
+});
+
+test('policy: finalize marca revisión humana aunque el motor devuelva BUG/LOW', () => {
+  const r = finalize({ category: 'BUG', priority: 'LOW', response: 'ok', mode: 'generative',
+    message: 'Puedo entrar a cuentas ajenas sin contraseña' });
+  assert.equal(r.requiresHumanReview, true);
+});
+
+test('policy: finalize sin message es compatible y no marca casos normales', () => {
+  assert.equal(finalize({ category: 'FEATURE', priority: 'LOW', response: 'ok', mode: 'traditional' }).requiresHumanReview, false);
+  assert.equal(finalize({ category: 'FEATURE', priority: 'LOW', response: 'ok', mode: 'traditional', message: 'Quisiera un modo oscuro' }).requiresHumanReview, false);
 });
