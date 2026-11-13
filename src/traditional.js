@@ -1,11 +1,12 @@
 // Motor tradicional: IA simbólica basada en reglas ponderadas. Sin modelos generativos.
-import { normalize } from './policy.js';
+import { normalize, detectSecuritySignal } from './policy.js';
 
 // [regex sobre texto normalizado (minúsculas, sin acentos), peso]
 const RULES = {
   SECURITY: [
     [/vulnerab/, 3], [/inyeccion\s+sql|sql\s*injection|\bxss\b/, 3], [/phishing/, 3],
-    [/hacke|hackear|hackeo/, 3], [/brecha|filtracion|fuga de datos|datos expuestos|expuest[oa]/, 3],
+    [/hacke|hackear|hackeo/, 3],
+    [/brecha|filtracion|fuga de datos|datos expuestos|expuest[oa]|\bse filtr|\bfiltr(o|aron|ado)\b/, 3],
     [/ransomware|malware|virus/, 3], [/acceso no autorizado|sin autorizacion/, 3],
     [/robo|robaron|robar/, 2], [/comprometid[oa]/, 3], [/exploit|ataque|ddos/, 3],
     [/actividad sospechosa|acceso sospechoso/, 3], [/alguien mas (entro|tiene acceso|accedio)/, 3],
@@ -24,11 +25,12 @@ const RULES = {
     [/duplicad[oa]|incorrect[oa]|se queda cargando/, 2], [/raro/, 1],
   ],
   FEATURE: [
-    [/me gustaria|quisiera|seria util|seria genial/, 3], [/agreg(ar|uen|ar)|anadir|anadan|incluir/, 2],
+    [/me gustaria|quisiera|seria util|seria genial/, 3], [/agreg(ar|ue|uen)|anadir|anadan|incluir/, 2],
     [/funcionalidad nueva|nueva funcion|nueva funcionalidad|sugerencia|sugiero/, 3],
     [/modo oscuro|exportar|integracion|\bfeature\b/, 1], [/mejora|opcion de|poder\b/, 1],
   ],
 };
+// Desempate: ante igualdad de puntaje, la categoría más crítica gana.
 const TIE_ORDER = ['SECURITY', 'ACCESS', 'BUG', 'FEATURE'];
 
 const REPLIES = {
@@ -41,6 +43,10 @@ const REPLIES = {
 function score(text) {
   const totals = Object.fromEntries(TIE_ORDER.map((c) => [c, 0]));
   for (const c of TIE_ORDER) for (const [re, w] of RULES[c]) if (re.test(text)) totals[c] += w;
+  // Señal compuesta de seguridad (p. ej. acceso a cuentas/datos ajenos, secretos expuestos):
+  // pesa más que cualquier señal individual de ACCESS, así "entrar a cuentas ajenas sin
+  // contraseña" es SECURITY aunque mencione acceso.
+  if (detectSecuritySignal(text)) totals.SECURITY += 4;
   return totals;
 }
 
@@ -48,7 +54,7 @@ function priorityFor(category, t) {
   const critical = /produccion.*(caid|down|no funciona|no responde)|(caid|down).*produccion|perdida de datos|se perdieron|borro (mis |los )?datos/.test(t);
   switch (category) {
     case 'SECURITY':
-      return /filtracion|fuga|brecha|ransomware|robo de datos|robaron|expuest[oa].*(clientes|produccion|publicamente)|(clientes|produccion).*expuest|en produccion|activamente|ahora mismo|hackearon|hackeado|comprometid/.test(t)
+      return /filtracion|\bse filtr|\bfiltr(o|aron|ado)\b|fuga|brecha|ransomware|robo de datos|robaron (los |sus |mis )?(datos|credenciales)|expuest[oa].*(clientes|produccion|publicamente)|(clientes|produccion).*expuest|en produccion|activamente|ahora mismo|hackearon|hackeado|comprometid/.test(t)
         ? 'CRITICAL' : 'HIGH';
     case 'ACCESS':
       return /\b(todos|nadie)\b|varios usuarios|toda la empresa|equipo completo|admin|urgente|no puedo trabajar/.test(t)
