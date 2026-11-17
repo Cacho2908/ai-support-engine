@@ -1,0 +1,34 @@
+{
+  "capturedAt": "2026-11-17T16:01:37.3258981-06:00",
+  "endpoint": "POST http://localhost:3000/api/analyze",
+  "results": [
+    {
+      "request": {
+        "message": "No puedo iniciar sesión en mi cuenta",
+        "mode": "traditional"
+      },
+      "httpStatus": 200,
+      "response": {
+        "category": "ACCESS",
+        "priority": "MEDIUM",
+        "response": "Lamentamos el inconveniente. Verifique sus credenciales y utilice la recuperación de contraseña si es necesario. Si el problema continúa, nuestro equipo de soporte le ayudará a restablecer el acceso.",
+        "requiresHumanReview": false,
+        "mode": "traditional"
+      }
+    },
+    {
+      "request": {
+        "message": "Puedo entrar a la cuenta de otro usuario sin contraseña",
+        "mode": "generative"
+      },
+      "httpStatus": 200,
+      "response": {
+        "category": "SECURITY",
+        "priority": "CRITICAL",
+        "response": "No intentes acceder a cuentas ajenas. No continúes intentando acceder. Reporta este incidente al equipo de seguridad por el canal oficial para su revisión.",
+        "requiresHumanReview": true,
+        "mode": "generative"
+      }
+    }
+  ]
+}

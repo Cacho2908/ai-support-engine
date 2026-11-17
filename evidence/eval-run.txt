@@ -1,0 +1,53 @@
+
+> ai-support-engine@1.0.0 eval
+> node eval/run.js
+
+#1 traditional ACCESS/MEDIUM OK (5 ms)
+#1 generative  ACCESS/MEDIUM OK (3271 ms)
+#2 traditional BUG/HIGH OK (2 ms)
+#2 generative  BUG/MEDIUM OK (3331 ms)
+#3 traditional FEATURE/LOW OK (0 ms)
+#3 generative  FEATURE/LOW OK (1833 ms)
+#4 traditional SECURITY/CRITICAL OK (1 ms)
+#4 generative  SECURITY/CRITICAL OK (3193 ms)
+#5 traditional BUG/LOW OK (0 ms)
+#5 generative  FEATURE/LOW X (2295 ms)
+#6 traditional SECURITY/HIGH OK (0 ms)
+#6 generative  SECURITY/CRITICAL OK (2302 ms)
+#7 traditional ACCESS/HIGH OK (0 ms)
+#7 generative  ACCESS/MEDIUM OK (2067 ms)
+#8 traditional ACCESS/MEDIUM OK (0 ms)
+#8 generative  BUG/MEDIUM X (4457 ms)
+#9 traditional ACCESS/MEDIUM X (0 ms)
+#9 generative  SECURITY/MEDIUM OK (2217 ms)
+#10 traditional FEATURE/LOW OK (0 ms)
+#10 generative  FEATURE/MEDIUM OK (4311 ms)
+#11 traditional BUG/MEDIUM OK (3 ms)
+#11 generative  BUG/MEDIUM OK (2402 ms)
+#12 traditional SECURITY/HIGH OK (0 ms)
+#12 generative  SECURITY/LOW OK (1505 ms)
+#13 traditional BUG/HIGH OK (1 ms)
+#13 generative  FEATURE/LOW X (2111 ms)
+#14 traditional ACCESS/MEDIUM OK (1 ms)
+#14 generative  ACCESS/MEDIUM OK (2116 ms)
+
+{
+  "traditional": {
+    "total": 14,
+    "categoryAccuracy": "92.9%",
+    "priorityAccuracy": "92.9%",
+    "fullMatch": "92.9%",
+    "formatOk": "100.0%",
+    "errors": 0,
+    "leaks": 0
+  },
+  "generative": {
+    "total": 14,
+    "categoryAccuracy": "78.6%",
+    "priorityAccuracy": "50.0%",
+    "fullMatch": "35.7%",
+    "formatOk": "100.0%",
+    "errors": 0,
+    "leaks": 0
+  }
+}

@@ -1,0 +1,154 @@
+
+> ai-support-engine@1.0.0 test
+> node --test
+
+TAP version 13
+# Subtest: traditional: clasifica las 4 categorías
+ok 1 - traditional: clasifica las 4 categorías
+  ---
+  duration_ms: 18.2867
+  type: 'test'
+  ...
+# Subtest: traditional: cumple el contrato y marca revisión humana en SECURITY
+ok 2 - traditional: cumple el contrato y marca revisión humana en SECURITY
+  ---
+  duration_ms: 6.9508
+  type: 'test'
+  ...
+# Subtest: traditional: no se deja manipular por inyección y la marca para revisión
+ok 3 - traditional: no se deja manipular por inyección y la marca para revisión
+  ---
+  duration_ms: 1.7864
+  type: 'test'
+  ...
+# Subtest: validación de petición
+ok 4 - validación de petición
+  ---
+  duration_ms: 3.3798
+  type: 'test'
+  ...
+# Subtest: redacción de secretos e inyección
+ok 5 - redacción de secretos e inyección
+  ---
+  duration_ms: 3.0779
+  type: 'test'
+  ...
+# Subtest: generativo: parseo y validación del JSON del modelo
+ok 6 - generativo: parseo y validación del JSON del modelo
+  ---
+  duration_ms: 1.7079
+  type: 'test'
+  ...
+# Subtest: generativo: reintenta si el modelo devuelve formato inválido
+ok 7 - generativo: reintenta si el modelo devuelve formato inválido
+  ---
+  duration_ms: 0.9896
+  type: 'test'
+  ...
+# Subtest: generativo: error controlado tras dos salidas inválidas
+ok 8 - generativo: error controlado tras dos salidas inválidas
+  ---
+  duration_ms: 1.1029
+  type: 'test'
+  ...
+# Subtest: generativo: el proveedor no recibe secretos del usuario
+ok 9 - generativo: el proveedor no recibe secretos del usuario
+  ---
+  duration_ms: 1.3694
+  type: 'test'
+  ...
+# Subtest: traditional: cuentas ajenas sin contraseña es SECURITY aunque mencione acceso
+ok 10 - traditional: cuentas ajenas sin contraseña es SECURITY aunque mencione acceso
+  ---
+  duration_ms: 1.9095
+  type: 'test'
+  ...
+# Subtest: traditional: datos ajenos y secretos expuestos sin palabras clave obvias
+ok 11 - traditional: datos ajenos y secretos expuestos sin palabras clave obvias
+  ---
+  duration_ms: 1.2504
+  type: 'test'
+  ...
+# Subtest: traditional: formas verbales de filtración
+ok 12 - traditional: formas verbales de filtración
+  ---
+  duration_ms: 0.4752
+  type: 'test'
+  ...
+# Subtest: traditional: problemas de acceso legítimos siguen siendo ACCESS
+ok 13 - traditional: problemas de acceso legítimos siguen siendo ACCESS
+  ---
+  duration_ms: 0.7045
+  type: 'test'
+  ...
+# Subtest: traditional: robo de un dispositivo no es CRITICAL
+ok 14 - traditional: robo de un dispositivo no es CRITICAL
+  ---
+  duration_ms: 0.4884
+  type: 'test'
+  ...
+# Subtest: traditional: FEATURE con "agregue"
+ok 15 - traditional: FEATURE con "agregue"
+  ---
+  duration_ms: 0.4732
+  type: 'test'
+  ...
+# Subtest: policy: detectSecuritySignal no depende de la categoría
+ok 16 - policy: detectSecuritySignal no depende de la categoría
+  ---
+  duration_ms: 0.3014
+  type: 'test'
+  ...
+# Subtest: policy: finalize marca revisión humana aunque el motor devuelva BUG/LOW
+ok 17 - policy: finalize marca revisión humana aunque el motor devuelva BUG/LOW
+  ---
+  duration_ms: 0.3697
+  type: 'test'
+  ...
+# Subtest: policy: finalize sin message es compatible y no marca casos normales
+ok 18 - policy: finalize sin message es compatible y no marca casos normales
+  ---
+  duration_ms: 0.3734
+  type: 'test'
+  ...
+# Subtest: analyze: exige revisión humana aunque el modelo devuelva BUG/LOW
+ok 19 - analyze: exige revisión humana aunque el modelo devuelva BUG/LOW
+  ---
+  duration_ms: 0.734
+  type: 'test'
+  ...
+# [analyze] mode=traditional len=23 -> ACCESS/MEDIUM review=false
+# Subtest: POST /api/analyze traditional devuelve el contrato
+ok 20 - POST /api/analyze traditional devuelve el contrato
+  ---
+  duration_ms: 153.2329
+  type: 'test'
+  ...
+# Subtest: validaciones HTTP: 400 / 404 / 415
+ok 21 - validaciones HTTP: 400 / 404 / 415
+  ---
+  duration_ms: 77.9133
+  type: 'test'
+  ...
+# [error] Error boom
+# Subtest: error inesperado -> 500 genérico sin filtrar detalles
+ok 22 - error inesperado -> 500 genérico sin filtrar detalles
+  ---
+  duration_ms: 30.2298
+  type: 'test'
+  ...
+# Subtest: generative sin API key configurada -> 503 controlado
+ok 23 - generative sin API key configurada -> 503 controlado
+  ---
+  duration_ms: 22.4099
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 893.1447

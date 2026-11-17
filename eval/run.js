@@ -7,6 +7,8 @@ import { checkResponseContract } from '../src/contract.js';
 import { DATASET } from './dataset.js';
 
 loadEnv();
+const provider = process.env.LLM_PROVIDER || (process.env.ANTHROPIC_API_KEY ? 'anthropic' : 'ollama');
+const model = provider === 'anthropic' ? (process.env.ANTHROPIC_MODEL || 'claude-haiku-5-5') : (process.env.OLLAMA_MODEL || 'llama3.2');
 const MODES = ['traditional', 'generative'];
 const rows = [];
 
@@ -50,22 +52,33 @@ const summary = Object.fromEntries(MODES.map((m) => {
 const cell = (r) => (r.error ? `ERROR` : `${r.category}/${r.priority}`);
 const mark = (b) => (b ? '✅' : '❌');
 let md = '# Resultados comparativos\n\n';
-md += '| # | Tipo | Mensaje | Referencia | Tradicional | Fmt | Cat | Gen. | Fmt | Cat |\n|---|---|---|---|---|---|---|---|---|---|\n';
+md += `Proveedor/modelo: ${provider} / ${model}.\n\n`;
+md += '| # | Tipo | Mensaje | Referencia | Tradicional | Formato | Categoría | Prioridad | Completo | Generativo | Formato | Categoría | Prioridad | Completo |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n';
 for (const c of DATASET) {
   const t = rows.find((r) => r.id === c.id && r.mode === 'traditional');
   const g = rows.find((r) => r.id === c.id && r.mode === 'generative');
   const msg = c.message.length > 70 ? c.message.slice(0, 67) + '...' : c.message;
-  md += `| ${c.id} | ${c.type} | ${msg.replace(/\|/g, '\\|')} | ${c.expected.category}/${c.expected.priority} | ${cell(t)} | ${mark(t.formatOk)} | ${mark(t.categoryOk)} | ${cell(g)} | ${mark(g.formatOk)} | ${mark(g.categoryOk)} |\n`;
+  md += `| ${c.id} | ${c.type} | ${msg.replace(/\|/g, '\\|')} | ${c.expected.category}/${c.expected.priority} | ${cell(t)} | ${mark(t.formatOk)} | ${mark(t.categoryOk)} | ${mark(t.priorityOk)} | ${mark(t.categoryOk && t.priorityOk)} | ${cell(g)} | ${mark(g.formatOk)} | ${mark(g.categoryOk)} | ${mark(g.priorityOk)} | ${mark(g.categoryOk && g.priorityOk)} |\n`;
 }
 md += '\n## Resumen\n\n| Motor | Casos | Categoría correcta | Prioridad correcta | Categoría y prioridad | Formato válido | Errores | Fugas de secretos |\n|---|---|---|---|---|---|---|---|\n';
 for (const m of MODES) {
   const s = summary[m];
   md += `| ${m} | ${s.total} | ${s.categoryAccuracy} | ${s.priorityAccuracy} | ${s.fullMatch} | ${s.formatOk} | ${s.errors} | ${s.leaks} |\n`;
 }
+const traditionalSummary = summary.traditional;
+const generativeSummary = summary.generative;
+const traditionalMatch = Number(traditionalSummary.fullMatch.replace('%', ''));
+const generativeMatch = Number(generativeSummary.fullMatch.replace('%', ''));
+const winner = traditionalMatch >= generativeMatch ? 'tradicional' : 'generativo';
+const winnerMatch = winner === 'tradicional' ? traditionalSummary.fullMatch : generativeSummary.fullMatch;
+const otherMatch = winner === 'tradicional' ? generativeSummary.fullMatch : traditionalSummary.fullMatch;
+const totalLeaks = traditionalSummary.leaks + generativeSummary.leaks;
+const conclusion = `En esta ejecución, el motor ${winner} obtuvo mejor coincidencia completa (${winnerMatch}) que el otro motor (${otherMatch}). El tradicional logró ${traditionalSummary.categoryAccuracy} de acierto en categoría y ${traditionalSummary.priorityAccuracy} en prioridad; el generativo obtuvo ${generativeSummary.categoryAccuracy} y ${generativeSummary.priorityAccuracy}. Ambos entregaron formato válido en todos sus casos. Fugas de secretos detectadas: ${totalLeaks}. La medición describe este conjunto de 14 mensajes y no generaliza por sí sola a todos los tickets reales.`;
+md += `\n## Conclusión técnica\n\n${conclusion}\n\n`;
 const errs = rows.filter((r) => r.error);
 if (errs.length) md += '\n## Errores\n\n' + errs.map((r) => `- #${r.id} ${r.mode}: ${r.error}`).join('\n') + '\n';
 
 mkdirSync(new URL('../results/', import.meta.url), { recursive: true });
-writeFileSync(new URL('../results/results.json', import.meta.url), JSON.stringify({ generatedAt: new Date().toISOString(), summary, rows }, null, 2));
+writeFileSync(new URL('../results/results.json', import.meta.url), JSON.stringify({ generatedAt: new Date().toISOString(), provider, model, summary, rows }, null, 2));
 writeFileSync(new URL('../results/results.md', import.meta.url), md);
 console.log('\n' + JSON.stringify(summary, null, 2));

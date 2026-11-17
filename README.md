@@ -67,10 +67,17 @@ test/               Pruebas automáticas (node:test)
 
 ## Pruebas comparativas (Req. 5)
 
-`eval/dataset.js` contiene 14 casos (7 normales, 4 ambiguos, 3 adversariales) con **clasificación de referencia definida antes de ejecutar**. `npm run eval` corre ambos motores y escribe `results/results.md` y `results/results.json` (categoría, prioridad, formato válido, correcto/incorrecto, % de aciertos, fugas de secretos).
+eval/dataset.js define **14 casos de referencia antes de ejecutar** ambos motores: 7 normales, 4 ambiguos y 3 adversariales. npm run eval consulta el motor tradicional y el modelo real configurado (en esta ejecución, Ollama llama3.2). Registra por caso categoría, prioridad, validez del contrato, aciertos frente a la referencia, tiempo, errores y posibles fugas de secretos. Los resultados completos están en [results/results.md](results/results.md) y [results/results.json](results/results.json).
 
-Resultados: ver `results/results.md` (**pega aquí la tabla y la conclusión de ≤150 palabras tras ejecutarlo**).
+Resultados de la ejecución guardada el 17 de noviembre de 2026:
+
+| Motor | Casos | Categoría correcta | Prioridad correcta | Coincidencia completa | Formato válido | Errores | Fugas |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Traditional | 14 | 92.9% | 92.9% | 92.9% | 100.0% | 0 | 0 |
+| Generative (Ollama llama3.2) | 14 | 78.6% | 50.0% | 35.7% | 100.0% | 0 | 0 |
+
+**Conclusión técnica (menos de 150 palabras):** En esta ejecución, el motor tradicional obtuvo mejor coincidencia completa (92.9%) que el generativo (35.7%). El tradicional acertó la categoría y la prioridad en 92.9% de los casos; el generativo acertó 78.6% en categoría y 50.0% en prioridad. Ambos entregaron formato válido en los 14 casos y no hubo errores del proveedor ni fugas de secretos. El generativo redactó respuestas contextuales, pero falló más en mensajes ambiguos y adversariales, especialmente al asignar prioridades. Estos resultados favorecen al motor tradicional para este dataset de 14 mensajes; una sola ejecución no demuestra que sea superior para todos los tickets reales.
 
 ## Evidencias
 
-Agrega capturas/logs en `evidence/`: `npm start` + `curl` en ambos modos, y la salida de `npm run eval`.
+La carpeta [evidence](evidence/) contiene el resultado de npm test, la salida completa del comparativo y respuestas reales del endpoint POST /api/analyze en los modos tradicional y generativo. Para repetir las pruebas y actualizar los artefactos, use npm test y npm run eval.
