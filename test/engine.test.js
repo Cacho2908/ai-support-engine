@@ -124,3 +124,22 @@ test('policy: finalize sin message es compatible y no marca casos normales', () 
   assert.equal(finalize({ category: 'FEATURE', priority: 'LOW', response: 'ok', mode: 'traditional' }).requiresHumanReview, false);
   assert.equal(finalize({ category: 'FEATURE', priority: 'LOW', response: 'ok', mode: 'traditional', message: 'Quisiera un modo oscuro' }).requiresHumanReview, false);
 });
+
+test('analyze: exige revisión humana aunque el modelo devuelva BUG/LOW', async () => {
+  const complete = async () => JSON.stringify({
+    category: 'BUG',
+    priority: 'LOW',
+    response: 'Revisaremos el problema reportado.'
+  });
+
+  const result = await analyze(
+    'Puedo entrar a cuentas ajenas sin contraseña',
+    'generative',
+    { complete }
+  );
+
+  assert.equal(result.category, 'BUG');
+  assert.equal(result.priority, 'LOW');
+  assert.equal(result.requiresHumanReview, true);
+  assert.deepEqual(checkResponseContract(result), []);
+});
