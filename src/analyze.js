@@ -7,8 +7,6 @@ export async function analyze(message, mode, deps = {}) {
   const injection = detectInjection(message);
   if (mode === 'traditional') {
     const r = classifyTraditional(message);
-    return finalize({ ...r, mode, injection });
-  }
+return finalize({ ...r, mode, injection, message });  }
   const r = await classifyGenerative(message, deps);
-  return finalize({ ...r, mode, injection });
-}
+return finalize({ ...r, mode, injection, message });}
