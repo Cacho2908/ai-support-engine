@@ -1,0 +1,208 @@
+﻿mensaje,categoria
+No puedo iniciar sesión en mi cuenta.,ACCESS
+Olvidé mi contraseña y necesito recuperarla.,ACCESS
+La página rechaza mi usuario aunque está escrito correctamente.,ACCESS
+No recibo el código para verificar mi identidad.,ACCESS
+Mi cuenta aparece bloqueada cuando intento entrar.,ACCESS
+Necesito cambiar el correo asociado a mi cuenta.,ACCESS
+La aplicación no me deja acceder al panel principal.,ACCESS
+Me aparece un error de autenticación al iniciar sesión.,ACCESS
+Quiero recuperar el acceso porque perdí mi contraseña.,ACCESS
+El sistema dice que mis credenciales son incorrectas.,ACCESS
+No puedo entrar desde mi computadora.,ACCESS
+La opción de cerrar sesión no funciona y no puedo cambiar de usuario.,ACCESS
+Mi sesión termina inmediatamente después de ingresar.,ACCESS
+No puedo verificar mi cuenta con el código enviado.,ACCESS
+El enlace para restablecer mi contraseña no funciona.,ACCESS
+Mi usuario no aparece registrado aunque ya tengo una cuenta.,ACCESS
+Necesito desbloquear mi perfil para volver a utilizarlo.,ACCESS
+La aplicación no reconoce mi correo electrónico.,ACCESS
+No puedo acceder a mi cuenta desde el teléfono.,ACCESS
+Me solicita iniciar sesión cada vez que abro la aplicación.,ACCESS
+No llega el correo de recuperación de contraseña.,ACCESS
+Quiero actualizar mis datos de acceso.,ACCESS
+El inicio de sesión se queda cargando y no entra.,ACCESS
+No puedo ingresar al área privada del sistema.,ACCESS
+Mi cuenta fue desactivada y necesito recuperarla.,ACCESS
+El código de autenticación aparece como inválido.,ACCESS
+No recuerdo mi nombre de usuario.,ACCESS
+La opción para recuperar la cuenta no responde.,ACCESS
+"Puedo abrir la página, pero no entrar con mi cuenta.",ACCESS
+El sistema no acepta la nueva contraseña que configuré.,ACCESS
+Necesito cambiar mi contraseña por seguridad.,ACCESS
+No puedo iniciar sesión después de actualizar la aplicación.,ACCESS
+Mi cuenta quedó bloqueada después de varios intentos.,ACCESS
+No puedo acceder al módulo de usuarios.,ACCESS
+La verificación en dos pasos no me permite continuar.,ACCESS
+Me aparece que mi sesión expiró al entrar.,ACCESS
+No puedo vincular mi cuenta con mi nuevo correo.,ACCESS
+El botón de ingresar no me permite acceder.,ACCESS
+Quiero recuperar una cuenta que no he utilizado en meses.,ACCESS
+La plataforma no reconoce mis datos de acceso.,ACCESS
+No puedo entrar aunque restablecí mi contraseña.,ACCESS
+El sistema no envía el código de inicio de sesión.,ACCESS
+Necesito volver a activar mi cuenta.,ACCESS
+La aplicación me devuelve a la pantalla de acceso.,ACCESS
+No puedo iniciar sesión desde un navegador diferente.,ACCESS
+Mi cuenta aparece como pendiente de verificación.,ACCESS
+No puedo cambiar el método de autenticación.,ACCESS
+El acceso al sistema está denegado para mi usuario.,ACCESS
+No puedo entrar al portal de soporte con mis credenciales.,ACCESS
+Quiero actualizar mi contraseña y no encuentro la opción.,ACCESS
+La aplicación se cierra sola al abrir el menú.,BUG
+El botón de guardar no realiza ninguna acción.,BUG
+La pantalla queda en blanco después de iniciar sesión.,BUG
+El sistema muestra un error al cargar los reportes.,BUG
+Los datos se duplican cuando presiono guardar dos veces.,BUG
+La búsqueda no muestra resultados aunque existen registros.,BUG
+La página tarda mucho y después deja de responder.,BUG
+El menú desplegable aparece fuera de lugar.,BUG
+La aplicación muestra una fecha incorrecta.,BUG
+No se actualiza la información después de editar un registro.,BUG
+El formulario permite enviar campos vacíos por error.,BUG
+La pantalla se congela al abrir el apartado de reportes.,BUG
+El botón de eliminar borra el elemento equivocado.,BUG
+Los gráficos no aparecen en el panel principal.,BUG
+La aplicación muestra un mensaje de error inesperado.,BUG
+"Al seleccionar una opción, se cierra la ventana.",BUG
+El sistema calcula mal el total de la factura.,BUG
+Las imágenes no cargan en la página de productos.,BUG
+El filtro deja de funcionar cuando cambio de página.,BUG
+La tabla se desordena después de actualizar los datos.,BUG
+El archivo descargado aparece vacío.,BUG
+La notificación se muestra varias veces sin motivo.,BUG
+El sistema no guarda los cambios realizados en el perfil.,BUG
+La aplicación tarda demasiado en mostrar los resultados.,BUG
+El botón de regresar lleva a una página incorrecta.,BUG
+Los caracteres especiales aparecen como símbolos extraños.,BUG
+El reporte muestra información incompleta.,BUG
+La página no se adapta correctamente al tamaño del celular.,BUG
+El sistema marca como inválido un dato que sí es correcto.,BUG
+"Al cargar un archivo, la aplicación deja de responder.",BUG
+El contador de notificaciones no se actualiza.,BUG
+La opción de imprimir genera una página en blanco.,BUG
+Los registros recientes no aparecen en la lista.,BUG
+El calendario muestra los días en posiciones incorrectas.,BUG
+La aplicación se queda cargando al consultar información.,BUG
+El botón de actualizar no refresca la pantalla.,BUG
+El sistema muestra dos veces el mismo mensaje.,BUG
+La ventana emergente no se puede cerrar.,BUG
+El cálculo del descuento no coincide con el porcentaje.,BUG
+El buscador distingue incorrectamente entre mayúsculas y minúsculas.,BUG
+La página presenta un error al cambiar el idioma.,BUG
+El menú lateral desaparece al cambiar de sección.,BUG
+Los datos de la tabla se cortan en pantallas pequeñas.,BUG
+El sistema no valida correctamente el formato de fecha.,BUG
+La exportación a PDF genera un documento dañado.,BUG
+La aplicación muestra un error al seleccionar una imagen.,BUG
+El estado de un pedido no cambia después de actualizarlo.,BUG
+La página pierde el contenido al recargar.,BUG
+El botón de cancelar no detiene la operación.,BUG
+El sistema presenta fallas al abrir el historial.,BUG
+Me gustaría que agregaran un modo oscuro.,FEATURE
+Quisiera recibir notificaciones cuando cambie el estado de un pedido.,FEATURE
+Sería útil poder exportar los reportes a Excel.,FEATURE
+Necesitamos un filtro para buscar por fecha.,FEATURE
+Quiero que la aplicación permita iniciar sesión con Google.,FEATURE
+Podrían agregar una opción para cambiar el idioma.,FEATURE
+Me gustaría tener un panel con estadísticas mensuales.,FEATURE
+Sería bueno poder personalizar las notificaciones.,FEATURE
+Necesitamos agregar fotografías a los perfiles.,FEATURE
+Quisiera que se pudiera descargar el historial en PDF.,FEATURE
+Propongo agregar una sección de preguntas frecuentes.,FEATURE
+Me gustaría poder ordenar las tablas por diferentes columnas.,FEATURE
+Sería útil incluir una opción para programar recordatorios.,FEATURE
+Quiero que se pueda compartir un reporte mediante un enlace.,FEATURE
+Podrían agregar más opciones de personalización al perfil.,FEATURE
+Necesitamos una función para importar datos desde CSV.,FEATURE
+Me gustaría tener una vista de calendario.,FEATURE
+Sería bueno agregar una búsqueda avanzada.,FEATURE
+Quisiera recibir un resumen semanal por correo.,FEATURE
+Propongo añadir una sección de comentarios en cada registro.,FEATURE
+Me gustaría poder guardar mis filtros favoritos.,FEATURE
+Necesitamos una opción para comparar reportes.,FEATURE
+Sería útil agregar accesos directos en el menú.,FEATURE
+Quiero que se puedan adjuntar documentos a las solicitudes.,FEATURE
+Podrían incorporar un sistema de etiquetas para organizar tareas.,FEATURE
+Me gustaría que el panel mostrara gráficos interactivos.,FEATURE
+Necesitamos una función para asignar tareas a otros usuarios.,FEATURE
+Sería bueno poder duplicar registros existentes.,FEATURE
+Quiero recibir alertas cuando se acerque una fecha límite.,FEATURE
+Propongo agregar una opción para imprimir directamente desde la aplicación.,FEATURE
+Me gustaría poder cambiar el tamaño de la letra.,FEATURE
+Necesitamos una sección para consultar actividades recientes.,FEATURE
+Sería útil permitir la edición masiva de registros.,FEATURE
+Quisiera agregar una opción para descargar imágenes.,FEATURE
+Podrían incluir una función para crear plantillas.,FEATURE
+Me gustaría que se pudieran programar informes automáticos.,FEATURE
+Necesitamos una opción para archivar elementos antiguos.,FEATURE
+Sería bueno integrar un chat de ayuda dentro de la plataforma.,FEATURE
+Quiero que se pueda personalizar el orden de las secciones.,FEATURE
+Propongo agregar una función para escanear códigos QR.,FEATURE
+Me gustaría recibir notificaciones en el celular.,FEATURE
+Necesitamos un botón para marcar elementos como favoritos.,FEATURE
+Sería útil incluir una opción para comparar versiones.,FEATURE
+Quisiera poder crear categorías personalizadas.,FEATURE
+Podrían agregar una vista compacta de la información.,FEATURE
+Me gustaría que el sistema permitiera guardar borradores.,FEATURE
+Necesitamos una función para compartir archivos con el equipo.,FEATURE
+Sería bueno agregar un asistente para completar formularios.,FEATURE
+Quiero poder consultar estadísticas por usuario.,FEATURE
+Propongo añadir una opción para programar tareas recurrentes.,FEATURE
+Detecté un acceso no autorizado a la cuenta de otro usuario.,SECURITY
+Alguien está intentando obtener contraseñas de los clientes.,SECURITY
+Se filtraron datos personales de varios usuarios.,SECURITY
+Un usuario puede consultar información privada de otras cuentas.,SECURITY
+Recibimos un mensaje sospechoso que intenta robar credenciales.,SECURITY
+Hay actividad desconocida dentro de una cuenta administrativa.,SECURITY
+Se compartió públicamente un archivo con datos confidenciales.,SECURITY
+El sistema permite ver información sin tener permisos.,SECURITY
+Detectamos intentos repetidos de acceso a cuentas ajenas.,SECURITY
+Un enlace sospechoso está solicitando datos bancarios.,SECURITY
+Encontré una vulnerabilidad que expone información de clientes.,SECURITY
+Alguien modificó registros sin autorización.,SECURITY
+Se está intentando suplantar la identidad de un empleado.,SECURITY
+Un archivo malicioso fue enviado a través de la plataforma.,SECURITY
+Hay indicios de que una cuenta fue comprometida.,SECURITY
+Un usuario logró entrar al panel de administración sin permiso.,SECURITY
+Se publicó accidentalmente una lista de correos y teléfonos privados.,SECURITY
+Detectamos una posible extracción de información confidencial.,SECURITY
+Un mensaje está intentando engañar a los usuarios para revelar sus claves.,SECURITY
+Hay una sesión activa desconocida en una cuenta de la empresa.,SECURITY
+Se encontraron datos sensibles expuestos en un enlace público.,SECURITY
+Alguien está intentando modificar los permisos de otros usuarios.,SECURITY
+Un empleado reportó que recibió un correo de phishing.,SECURITY
+La información privada de un cliente aparece en otra cuenta.,SECURITY
+Detectamos un inicio de sesión sospechoso desde una ubicación desconocida.,SECURITY
+Un atacante está intentando explotar una vulnerabilidad del sistema.,SECURITY
+Se filtró un archivo que contiene información interna de la empresa.,SECURITY
+Una cuenta está enviando mensajes fraudulentos a otros usuarios.,SECURITY
+Hay evidencia de que alguien accedió a registros sin autorización.,SECURITY
+El sistema expuso accidentalmente tokens de acceso.,SECURITY
+Un usuario recibió datos personales que no le pertenecen.,SECURITY
+Se detectó software malicioso en un archivo adjunto.,SECURITY
+Alguien está intentando hacerse pasar por el administrador.,SECURITY
+Se encontraron credenciales publicadas en un repositorio abierto.,SECURITY
+Una persona sin autorización puede descargar documentos privados.,SECURITY
+Hay intentos de acceder a la base de datos de forma ilegal.,SECURITY
+Un enlace falso está imitando la página de inicio de sesión.,SECURITY
+Se detectó una posible brecha de seguridad en el servidor.,SECURITY
+Un usuario reporta que otra persona controla su cuenta.,SECURITY
+Se están enviando solicitudes sospechosas para obtener información privada.,SECURITY
+Un archivo confidencial quedó disponible para cualquier visitante.,SECURITY
+Detectamos cambios no autorizados en la configuración de seguridad.,SECURITY
+Alguien intenta acceder a información de clientes usando otra cuenta.,SECURITY
+Se identificó una posible fuga de datos personales.,SECURITY
+Un atacante está probando contraseñas de múltiples cuentas.,SECURITY
+Un mensaje fraudulento solicita que los usuarios compartan sus códigos.,SECURITY
+Se encontraron permisos incorrectos que permiten ver datos privados.,SECURITY
+Una cuenta administrativa presenta actividad que su propietario desconoce.,SECURITY
+Se detectó una descarga masiva de información sin autorización.,SECURITY
+Hay una posible intrusión en los sistemas de la organización.,SECURITY
+mensaje,categoria
+Alguien entró a mi cuenta sin autorización.,SECURITY
+Una persona desconocida accedió a mi perfil.,SECURITY
+Detecté que alguien está utilizando mi cuenta.,SECURITY
+Un usuario entró a la cuenta de otro cliente.,SECURITY
+Alguien está viendo mis datos privados sin permiso.,SECURITY
+Mi cuenta fue comprometida por un atacante.,SECURITY

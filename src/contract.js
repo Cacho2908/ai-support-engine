@@ -3,7 +3,7 @@ import { AppError } from './errors.js';
 
 export const CATEGORIES = ['ACCESS', 'BUG', 'FEATURE', 'SECURITY'];
 export const PRIORITIES = ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'];
-export const MODES = ['traditional', 'generative'];
+export const MODES = ['traditional', 'generative', 'ml'];
 export const MAX_MESSAGE_LENGTH = 2000;
 
 /** Valida el cuerpo de POST /api/analyze. Lanza AppError(400) si es inválido. */
